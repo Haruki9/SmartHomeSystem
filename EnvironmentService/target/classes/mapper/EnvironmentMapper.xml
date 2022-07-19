@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.xmu.haruki.environmentService.mapper.EnvironmentMapper">
+    <select id="getAllEnvironment" resultType="com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment">
+        select * from environment where status &gt;=0;
+    </select>
+
+    <select id="getEnvironmentByName" resultType="com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment">
+        select * from environment where name=#{name}
+    </select>
+
+    <select id="getEnvironmentById" resultType="com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment">
+        select * from environment where id=#{envId}
+    </select>
+    <select id="totalNum" resultType="java.lang.Integer">
+        select count(*) from environment
+    </select>
+    <select id="getAllAvailableEnvs"
+            resultType="com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment">
+        select * from environment where status=1;
+    </select>
+
+    <insert id="insertEnvironment" parameterType="com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment">
+        insert into environment(name,info,status)
+        values(#{name},#{info},1)
+    </insert>
+
+    <update id="updateEnvironmentStatus">
+        update environment set status=#{status}
+        where id=#{envId}
+    </update>
+</mapper>
