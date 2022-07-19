@@ -45,7 +45,6 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
 
         if (token==null){
             ResultMsg msg=new ResultMsg(401,"未登录认证！",null);
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
             DataBuffer result=response.bufferFactory().wrap(msg.toString().getBytes(StandardCharsets.UTF_8));
             response.writeWith(Mono.just(result));
             return response.setComplete();
@@ -53,7 +52,6 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
 
         if (!jwtUtil.judgeTokenLegality(token)){
             ResultMsg msg=new ResultMsg(403,"Token非法或失效！",null);
-            response.setStatusCode(HttpStatus.UNAUTHORIZED);
             DataBuffer result=response.bufferFactory().wrap(msg.toString().getBytes(StandardCharsets.UTF_8));
             response.writeWith(Mono.just(result));
             return response.setComplete();
@@ -67,7 +65,6 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
             Boolean admin= (Boolean) jwtUtil.getTargetClaimsFromToken(token,"admin");
             if (!admin){
                 ResultMsg msg=new ResultMsg(405,"权限不足！",null);
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 DataBuffer result=response.bufferFactory().wrap(msg.toString().getBytes(StandardCharsets.UTF_8));
                 response.writeWith(Mono.just(result));
                 return response.setComplete();
