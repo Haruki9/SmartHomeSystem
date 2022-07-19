@@ -58,7 +58,7 @@ public class UserService {
         data.put("AccessToken",token);
         response.setHeader("AccessToken", token);
         response.addCookie(new Cookie("AccessToken",token));
-        response.addCookie(new Cookie("SameSite","none"));
+        response.addCookie(new Cookie("SameSite","None"));
         msg.setCode(200);
         msg.setMsg("登录成功！");
         msg.setData(data);
