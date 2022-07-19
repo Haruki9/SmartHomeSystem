@@ -3,6 +3,7 @@ package com.edu.xmu.haruki.DashboardProvider.controller;
 import com.edu.xmu.haruki.DashboardProvider.model.ResultMsg;
 import com.edu.xmu.haruki.DashboardProvider.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -41,7 +42,9 @@ public class DashboardController {
      * @return
      */
     @GetMapping("/{envId}/temperature")
-    public ResultMsg weeklyTemperature(@PathVariable Integer envId, @RequestParam LocalDate startDate,@RequestParam LocalDate endDate){
+    public ResultMsg weeklyTemperature(@PathVariable Integer envId,
+                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
         return dashboardService.weeklyTemperature(envId,startDate,endDate);
     }
 
@@ -68,7 +71,9 @@ public class DashboardController {
      * @return
      */
     @GetMapping("/{envId}/exception/statistic")
-    public ResultMsg exceptionStatistic(@PathVariable Integer envId, @RequestParam LocalDate startDate,@RequestParam LocalDate endDate){
+    public ResultMsg exceptionStatistic(@PathVariable Integer envId,
+                                        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                                        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return dashboardService.exceptionStatistic(envId,startDate,endDate);
     }
 
@@ -82,7 +87,9 @@ public class DashboardController {
      * @return
      */
     @GetMapping("/{envId}/record/exception")
-    public ResultMsg exceptionRecords(@PathVariable Integer envId, @RequestParam LocalDate startDate,@RequestParam LocalDate endDate){
+    public ResultMsg exceptionRecords(@PathVariable Integer envId,
+                                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return dashboardService.exceptionRecords(envId,startDate,endDate);
     }
 }

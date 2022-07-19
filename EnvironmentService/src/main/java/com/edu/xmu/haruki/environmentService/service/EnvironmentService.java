@@ -135,4 +135,8 @@ public class EnvironmentService {
         resultMsg.setData(environmentMapper.getEnvironmentById(envId));
         return resultMsg;
     }
+
+    public List<BasicEnvironment> getAvailableEnvs() {
+        return environmentMapper.getAllAvailableEnvs();
+    }
 }

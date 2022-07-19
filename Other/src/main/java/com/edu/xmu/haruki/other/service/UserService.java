@@ -39,7 +39,7 @@ public class UserService {
         try{
             Map<String, Object> claims=new HashMap<>();
             claims.put("username",username);
-            claims.put("type",user.getAdmin());
+            claims.put("admin",user.getAdmin());
             token=jwtUtil.createToken(claims);
         }catch (Exception e){
             e.printStackTrace();

@@ -41,7 +41,7 @@ public class EnvironmentController {
     public ResultMsg allAvailableEnvironment(){
         ResultMsg msg=new ResultMsg();
         Map<String,Object> data=new HashMap<>();
-        data.put("environments",environmentService.getAllEnvironments());
+        data.put("environments",environmentService.getAvailableEnvs());
         msg.setData(data);
         msg.setCode(200);
         msg.setMsg("查询成功！");

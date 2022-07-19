@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.xmu.haruki.environmentService.mapper.SensorMapper">
+    <select id="getAllSensors" resultType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        select * from sensor limit #{start},#{size}
+    </select>
+
+    <select id="getSensor" resultType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        select * from sensor
+        where 1=1
+        <if test="name!=null">
+            and name=#{name}
+        </if>
+        <if test="envId!=null">
+            and env_belongs=#{envId}
+        </if>
+        <if test="type!=null">
+            and type=#{type}
+        </if>
+        <if test="startTime!=null">
+            and create_time &gt; = #{startTime}
+        </if>
+        <if test="endTime!=null">
+            and create_time &lt; =#{endTime}
+        </if>
+        limit #{start},#{size}
+    </select>
+    <select id="getSensorById" resultType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        select * from sensor where id=#{sensorId}
+    </select>
+    <select id="getSensorByEnvId" resultType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        select * from sensor where env_belongs=#{envId}
+    </select>
+    <select id="getSensorByEnvIdName"
+            resultType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        select * from sensor where env_belongs=#{envBelongs} and name=#{name}
+    </select>
+
+    <insert id="insertSensor" parameterType="com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor">
+        insert into sensor(name,PAN_id,type,env_belongs,status)
+        values(#{name},#{PANId},#{type},#{envBelongs},1)
+    </insert>
+
+    <update id="updateSensor">
+        update sensor
+        set
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="PANId != null">
+                PAN_id=#{PANId},
+            </if>
+            <if test="envBelongs!=null">
+                env_belongs=#{envBelongs},
+            </if>
+            <if test="type!=null">
+                type=#{type},
+            </if>
+            <if test="status !=null">
+                status=#{status}
+            </if>
+        where id=#{id}
+    </update>
+</mapper>
