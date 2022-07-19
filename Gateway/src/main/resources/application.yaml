@@ -15,33 +15,18 @@ spring:
     name: SpringCloudGateway
   cloud:
     gateway:
-      filter:
-        remove-hop-by-hop:
-          headers:
-            # 以下是去掉网关默认去掉的请求响应头
-            - trailer
-            - te
-            - keep-alive
-            - transfer-encoding
-            - upgrade
-            - proxy-authenticate
-            - connection
-            - proxy-authorization
-            - x-application-context
-            # 以下是去掉服务层面定义的跨域
-            - access-control-allow-credentials
-            - access-control-allow-headers
-            - access-control-allow-methods
-            - access-control-allow-origin
-            - access-control-max-age
-            - vary
       globalcors:
         cors-configurations:
           '[/**]':
+            allowedOriginPatterns:
+              - "*"
             allowCredentials: true
-            allowOrigins: http://localhost:8080
             allowedHeaders: "*"
-            allowedMethods: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       discovery:
         locator:
           enabled: true
