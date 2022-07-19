@@ -38,10 +38,10 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowCredentials: true
+            allowOrigins: http://localhost:8080
             allowedHeaders: "*"
             allowedMethods: "*"
-        add-to-simple-url-handler-mapping: true
       discovery:
         locator:
           enabled: true
