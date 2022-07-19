@@ -39,7 +39,7 @@ spring:
         cors-configurations:
           '[/**]':
             allowCredentials: true
-            allowedOrigins: "*"
+            allowedOgiriginPatterns: "*"
             allowedHeaders: "*"
             allowedMethods: "*"
       discovery:
