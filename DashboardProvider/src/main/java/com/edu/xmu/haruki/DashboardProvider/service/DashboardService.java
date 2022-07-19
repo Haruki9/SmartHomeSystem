@@ -1,10 +1,13 @@
 package com.edu.xmu.haruki.DashboardProvider.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.edu.xmu.haruki.DashboardProvider.feign.EnvironmentFeignClient;
-import com.edu.xmu.haruki.DashboardProvider.feign.RecordFeignClient;
 import com.edu.xmu.haruki.DashboardProvider.model.Record;
 import com.edu.xmu.haruki.DashboardProvider.model.ResultMsg;
 import com.edu.xmu.haruki.DashboardProvider.model.sensor.SensorType;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +26,6 @@ public class DashboardService {
 
     @Autowired
     private EnvironmentFeignClient environmentFeignClient;
-
-    @Autowired
-    private RecordFeignClient recordFeignClient;
-
 
     public Object allAvailableEnvs(){
         return environmentFeignClient.allAvailableEnvironment();
@@ -63,7 +62,12 @@ public class DashboardService {
      * @return
      */
     public ResultMsg weeklyTemperature(Integer envId, LocalDate startDate, LocalDate endDate){
-        List<Record> records= (List<Record>) recordFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay()).getData();
+        ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay());
+
+        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
+        List<Record> records=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
+        });
+
         Map<LocalDate, Map<LocalTime, Double>> weeklyTemperatureAvg=records.stream().collect(Collectors.groupingBy(
                 Record::getDate,Collectors.groupingBy(
                         Record::getTime, Collectors.averagingDouble(Record::getSenseValue)
@@ -85,8 +89,11 @@ public class DashboardService {
     }
 
     public ResultMsg humidityStatistic(Integer envId, LocalDate startDate, LocalDate endDate) {
-        List<Record> humidityRecords= (List<Record>) recordFeignClient.retrieveRecords(null,null,envId,SensorType.HUMIDITY,startDate.atStartOfDay(),endDate.atStartOfDay()).getData();
+        ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.HUMIDITY, startDate.atStartOfDay(),endDate.atStartOfDay());
 
+        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
+        List<Record> humidityRecords=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
+        });
         Map<LocalDate, DoubleSummaryStatistics> statistics=humidityRecords.stream().collect(Collectors.groupingBy(
                 Record::getDate,
                 Collectors.summarizingDouble(Record::getSenseValue)
@@ -102,8 +109,11 @@ public class DashboardService {
     }
 
     public ResultMsg exceptionStatistic(Integer envId, LocalDate startDate, LocalDate endDate) {
-        List<Record> exceptionRecords= (List<Record>) recordFeignClient.retrieveExceptionRecords(null,null,envId,null,startDate.atStartOfDay(),endDate.atStartOfDay()).getData();
+        ResultMsg msg1=environmentFeignClient.retrieveExceptionRecords(null,null,envId,null, startDate.atStartOfDay(),endDate.atStartOfDay());
 
+        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
+        List<Record> exceptionRecords=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
+        });
         Map<SensorType, Long> countStatistic=exceptionRecords.stream().collect(
                 Collectors.groupingBy(
                         Record::getSensorType,
@@ -122,7 +132,7 @@ public class DashboardService {
     }
 
     public ResultMsg exceptionRecords(Integer envId, LocalDate startDate, LocalDate endDate) {
-        List<Record> exceptionRecords= (List<Record>) recordFeignClient.retrieveExceptionRecords(null,null,envId,null,startDate.atStartOfDay(),endDate.atStartOfDay()).getData();
+        List<Record> exceptionRecords= (List<Record>) environmentFeignClient.retrieveExceptionRecords(null,null,envId,null,startDate.atStartOfDay(),endDate.atStartOfDay()).getData();
         ResultMsg msg=new ResultMsg();
         HashMap<String,Object> data=new HashMap<>();
         data.put("exceptionRecords",exceptionRecords);

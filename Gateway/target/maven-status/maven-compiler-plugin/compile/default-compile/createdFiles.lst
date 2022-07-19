@@ -1,0 +1,5 @@
+com/edu/xmu/haruki/gateway/model/ResultMsg.class
+com/edu/xmu/haruki/gateway/feign/UserFeignClient.class
+com/edu/xmu/haruki/gateway/util/JwtUtil.class
+com/edu/xmu/haruki/gateway/GatewayApplication.class
+com/edu/xmu/haruki/gateway/filter/AccessTokenFilter.class

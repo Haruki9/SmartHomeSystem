@@ -51,7 +51,7 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
             return response.setComplete();
         }
 
-        if (jwtUtil.judgeTokenLegality(token)){
+        if (!jwtUtil.judgeTokenLegality(token)){
             ResultMsg msg=new ResultMsg(403,"Token非法或失效！",null);
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             DataBuffer result=response.bufferFactory().wrap(msg.toString().getBytes(StandardCharsets.UTF_8));

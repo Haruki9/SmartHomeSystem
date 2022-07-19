@@ -15,6 +15,13 @@ spring:
     name: SpringCloudGateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowCredentials: true
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
       discovery:
         locator:
           enabled: true
@@ -31,3 +38,11 @@ spring:
           uri: lb://EnvironmentService
           predicates:
             - Path=/environment/**, /record/**, /sensor/**
+        - id: userLogin
+          uri: lb://OTHERSERVICE
+          predicates:
+            - Path=/login
+        - id: dashboardService
+          uri: lb://DASHBOARDSERVICE
+          predicates:
+            - Path=/dashboard/**
