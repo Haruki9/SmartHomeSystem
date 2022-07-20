@@ -34,7 +34,7 @@ public class AccessTokenFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response=exchange.getResponse();
 
         String urlPath=request.getURI().getPath();
-        if (urlPath.startsWith("/login")){
+        if (urlPath.startsWith("/login")|| urlPath.equals("/record/insert") || urlPath.equals("/record/mulInsert")){
             return chain.filter(exchange);
         }
 
