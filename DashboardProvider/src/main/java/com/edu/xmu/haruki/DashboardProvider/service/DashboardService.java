@@ -64,8 +64,7 @@ public class DashboardService {
         ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay());
 
         ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
-        List<Record> records=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
-        });
+        List<Record> records=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {});
 
         Map<LocalDate, Map<LocalTime, Double>> weeklyTemperatureAvg=records.stream().collect(Collectors.groupingBy(
                 Record::getDate,Collectors.groupingBy(
