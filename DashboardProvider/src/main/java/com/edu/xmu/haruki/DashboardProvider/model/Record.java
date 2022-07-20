@@ -2,6 +2,7 @@ package com.edu.xmu.haruki.DashboardProvider.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.edu.xmu.haruki.DashboardProvider.model.sensor.SensorType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class Record {
     private Double senseValue;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime recordTime;
 
     public LocalDate getDate(){

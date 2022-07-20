@@ -7,6 +7,11 @@ import com.edu.xmu.haruki.DashboardProvider.model.sensor.SensorType;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -64,7 +70,12 @@ public class DashboardService {
     public ResultMsg weeklyTemperature(Integer envId, LocalDate startDate, LocalDate endDate){
         ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay());
 
-        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
+        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule().
+                addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addSerializer(LocalDateTime.class,new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addSerializer(LocalDate.class,new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addDeserializer(LocalDate.class,new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+        );
         List<Record> records=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {});
 
         Map<LocalDate, Map<LocalTime, Double>> weeklyTemperatureAvg=records.stream().collect(Collectors.groupingBy(
