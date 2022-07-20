@@ -57,10 +57,10 @@
                 and sensor_type=#{recordVo.sensorType}
             </if>
             <if test="recordVo.startTime!=null">
-                and record_time &gt; = #{recordVo.startTime}
+                and record_time &gt;= #{recordVo.startTime}
             </if>
             <if test="recordVo.endTime!=null">
-                and record_time &lt; =#{recordVo.endTime}
+                and record_time &lt;=#{recordVo.endTime}
             </if>
         </if>
         limit 100
