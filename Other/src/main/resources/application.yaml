@@ -13,7 +13,7 @@ spring:
   application:
     name: OtherService
   datasource:
-    url: jdbc:mysql://localhost:3306/EtcDB
+    url: jdbc:mysql://localhost:3306/ETCDB
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
