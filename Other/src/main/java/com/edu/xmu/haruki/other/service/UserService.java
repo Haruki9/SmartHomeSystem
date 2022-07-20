@@ -5,11 +5,14 @@ import com.edu.xmu.haruki.other.model.ResultMsg;
 import com.edu.xmu.haruki.other.model.User;
 import com.edu.xmu.haruki.other.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +60,9 @@ public class UserService {
         data.put("admin",user.getAdmin());
         data.put("AccessToken",token);
         response.setHeader("AccessToken", token);
-        response.addCookie(new Cookie("AccessToken",token));
-        response.addCookie(new Cookie("SameSite","None"));
+        ResponseCookie cookie=ResponseCookie.from("AccessToken",token)
+                        .httpOnly(false).maxAge(Duration.ofHours(1)).sameSite("None").build();
+        response.setHeader(HttpHeaders.SET_COOKIE,cookie.toString());
         msg.setCode(200);
         msg.setMsg("登录成功！");
         msg.setData(data);
