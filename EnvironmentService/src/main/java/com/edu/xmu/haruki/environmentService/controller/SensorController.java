@@ -29,7 +29,7 @@ public class SensorController {
     public ResultMsg getAllSensorType(){
         ResultMsg msg=new ResultMsg();
         Map<String,Object> map=new HashMap<>();
-        map.put("SensorType",SensorType.values());
+        map.put("SensorTypes",SensorType.values());
         msg.setCode(200);
         msg.setMsg("查询成功");
         msg.setData(map);

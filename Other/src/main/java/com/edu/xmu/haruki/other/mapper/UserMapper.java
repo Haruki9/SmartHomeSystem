@@ -20,7 +20,7 @@ public interface UserMapper {
     User getUserByUsername(String username);
     int updateUser(User user);
 
-    int updateUserStatus(Integer uId, int status);
+    int updateUserStatus(Integer uId, int userStatus);
 
     int createUser(User user);
 

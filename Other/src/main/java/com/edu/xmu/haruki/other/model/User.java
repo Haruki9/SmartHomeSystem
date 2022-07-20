@@ -18,7 +18,7 @@ public class User {
     private String username;
     private String password;
     private String name;
-    private Integer status;
+    private Integer userStatus;
     private Boolean admin;
     private LocalDate createTime;
     private LocalDate updateTime;

@@ -5,6 +5,7 @@ import com.edu.xmu.haruki.environmentService.mapper.SensorMapper;
 import com.edu.xmu.haruki.environmentService.model.ResultMsg;
 import com.edu.xmu.haruki.environmentService.model.environment.BasicEnvironment;
 import com.edu.xmu.haruki.environmentService.model.sensor.BasicSensor;
+import com.edu.xmu.haruki.environmentService.model.sensor.SensorType;
 import com.edu.xmu.haruki.environmentService.model.sensor.SensorVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
