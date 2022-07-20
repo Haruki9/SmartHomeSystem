@@ -23,7 +23,8 @@
     </select>
 
     <update id="updateUser" parameterType="User">
-        update user set
+        update user
+        <set>
         <if test="username !=null">
             username=#{username},
         </if>
@@ -39,7 +40,7 @@
         <if test="admin !=null">
             admin=#{admin},
         </if>
-        1=1
+       </set>
         where id=#{id}
     </update>
 
