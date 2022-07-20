@@ -44,22 +44,22 @@
         select * from exception_record
         where 1=1
         <if test="recordVo!=null">
-            <if test="id !=null">
+            <if test="recordVo.id !=null">
                 and id=#{recordVo.id}
             </if>
-            <if test="sensorId!=null">
+            <if test="recordVo.sensorId!=null">
                 and sensor_id=#{recordVo.sensorId}
             </if>
-            <if test="envId!=null">
+            <if test="recordVo.envId!=null">
                 and env_id=#{recordVo.envId}
             </if>
-            <if test="sensorType!=null">
+            <if test="recordVo.sensorType!=null">
                 and sensor_type=#{recordVo.sensorType}
             </if>
-            <if test="startTime!=null">
+            <if test="recordVo.startTime!=null">
                 and record_time &gt; = #{recordVo.startTime}
             </if>
-            <if test="endTime!=null">
+            <if test="recordVo.endTime!=null">
                 and record_time &lt; =#{recordVo.endTime}
             </if>
         </if>

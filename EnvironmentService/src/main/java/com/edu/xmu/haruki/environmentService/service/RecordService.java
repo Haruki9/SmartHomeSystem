@@ -163,6 +163,13 @@ public class RecordService {
     }
 
     public List<Record> getExceptionRecords(RecordVo recordVo, Integer page, Integer pageSize) {
-        return recordsMapper.getExceptionRecords(recordVo,page*pageSize,pageSize);
+        List<Record> exceptionRecords;
+        try{
+            exceptionRecords=recordsMapper.getExceptionRecords(recordVo,page*pageSize,pageSize);
+        }catch (Exception e){
+            e.printStackTrace();
+            exceptionRecords=null;
+        }
+        return exceptionRecords;
     }
 }
