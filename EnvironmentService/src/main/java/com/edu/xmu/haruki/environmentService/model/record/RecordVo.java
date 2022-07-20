@@ -1,7 +1,9 @@
 package com.edu.xmu.haruki.environmentService.model.record;
 
 import com.edu.xmu.haruki.environmentService.model.sensor.SensorType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +17,12 @@ public class RecordVo {
     private Integer sensorId;
     private Integer envId;
     private SensorType sensorType;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
 }
