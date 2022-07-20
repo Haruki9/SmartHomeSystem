@@ -6,6 +6,7 @@ import com.edu.xmu.haruki.environmentService.model.sensor.SensorType;
 import com.edu.xmu.haruki.environmentService.model.sensor.SensorVo;
 import com.edu.xmu.haruki.environmentService.service.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -49,7 +50,8 @@ public class SensorController {
     @GetMapping("/retrieve")
     public ResultMsg getSensors(@RequestParam(required = false) String name, @RequestParam(required = false) Integer envId,
                                 @RequestParam(required = false) SensorType type, @RequestParam(required = false) Integer status,
-                                @RequestParam(required = false)LocalDateTime startTime, @RequestParam(required = false) LocalDateTime endTime,
+                                @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime startTime,
+                                @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime endTime,
                                 @RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "10") Integer pageSize){
         ResultMsg msg=new ResultMsg();
         SensorVo sensorVo=new SensorVo(null,name,type,envId,status,startTime,endTime);

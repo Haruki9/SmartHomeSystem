@@ -43,8 +43,8 @@ public class DashboardController {
      */
     @GetMapping("/{envId}/temperature")
     public ResultMsg weeklyTemperature(@PathVariable Integer envId,
-                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+                                       @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                                       @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return dashboardService.weeklyTemperature(envId,startDate,endDate);
     }
 

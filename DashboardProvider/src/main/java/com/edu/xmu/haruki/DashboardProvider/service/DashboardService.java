@@ -62,6 +62,8 @@ public class DashboardService {
      * @return
      */
     public ResultMsg weeklyTemperature(Integer envId, LocalDate startDate, LocalDate endDate){
+        System.out.println(startDate);
+        System.out.println(endDate);
         ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay());
 
         ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
@@ -89,6 +91,7 @@ public class DashboardService {
     }
 
     public ResultMsg humidityStatistic(Integer envId, LocalDate startDate, LocalDate endDate) {
+
         ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.HUMIDITY, startDate.atStartOfDay(),endDate.atStartOfDay());
 
         ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
