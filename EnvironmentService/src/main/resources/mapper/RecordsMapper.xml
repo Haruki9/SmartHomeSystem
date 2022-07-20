@@ -54,7 +54,7 @@
                 and env_id=#{recordVo.envId}
             </if>
             <if test="sensorType!=null">
-                and sensor_type=#{sensorType}
+                and sensor_type=#{recordVo.sensorType}
             </if>
             <if test="startTime!=null">
                 and record_time &gt; = #{recordVo.startTime}
