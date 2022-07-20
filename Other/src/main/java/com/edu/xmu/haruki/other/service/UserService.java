@@ -60,11 +60,6 @@ public class UserService {
         data.put("admin",user.getAdmin());
         data.put("AccessToken",token);
         response.setHeader("AccessToken", token);
-        ResponseCookie cookie=ResponseCookie.from("AccessToken",token)
-                        .httpOnly(false).maxAge(Duration.ofHours(1))
-                        .secure(false)
-                        .sameSite("None").build();
-        response.setHeader(HttpHeaders.SET_COOKIE,cookie.toString());
         msg.setCode(200);
         msg.setMsg("登录成功！");
         msg.setData(data);
