@@ -58,7 +58,7 @@
                 type=#{type},
             </if>
             <if test="status !=null">
-                status=#{status},
+                status=#{status}
             </if>
         </set>
         where id=#{id}

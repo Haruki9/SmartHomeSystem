@@ -1,0 +1,5 @@
+/Users/haruki_9/IdeaProjects/SmartHomeManager/Gateway/src/main/java/com/edu/xmu/haruki/gateway/filter/AccessTokenFilter.java
+/Users/haruki_9/IdeaProjects/SmartHomeManager/Gateway/src/main/java/com/edu/xmu/haruki/gateway/model/ResultMsg.java
+/Users/haruki_9/IdeaProjects/SmartHomeManager/Gateway/src/main/java/com/edu/xmu/haruki/gateway/feign/UserFeignClient.java
+/Users/haruki_9/IdeaProjects/SmartHomeManager/Gateway/src/main/java/com/edu/xmu/haruki/gateway/util/JwtUtil.java
+/Users/haruki_9/IdeaProjects/SmartHomeManager/Gateway/src/main/java/com/edu/xmu/haruki/gateway/GatewayApplication.java
