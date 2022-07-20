@@ -67,15 +67,15 @@
     </select>
 
     <insert id="insertRecord" parameterType="com.edu.xmu.haruki.environmentService.model.record.Record">
-        insert into record(sensor_id,env_id,sense_value,record_time)
-        values(#{sensorId},#{envId},#{senseValue},#{recordTime})
+        insert into record(sensor_id,env_id,sensor_type,sense_value,record_time)
+        values(#{sensorId},#{envId},#{sensorType},#{senseValue},#{recordTime})
     </insert>
 
     <insert id="insertRecords">
-        insert into record(sensor_id,env_id,sense_value,record_time)
+        insert into record(sensor_id,env_id,sensor_type,sense_value,record_time)
         values
                <foreach collection="records" item="record" separator=",">
-                   (#{record.sensorId},#{record.envId},#{record.senseValue},#{record.recordTime})
+                   (#{record.sensorId},#{record.envId},#{record.sensorType},#{record.senseValue},#{record.recordTime})
                </foreach>
 
     </insert>
