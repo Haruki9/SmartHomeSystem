@@ -1,6 +1,5 @@
 package com.edu.xmu.haruki.DashboardProvider.service;
 
-import com.alibaba.fastjson.JSONArray;
 import com.edu.xmu.haruki.DashboardProvider.feign.EnvironmentFeignClient;
 import com.edu.xmu.haruki.DashboardProvider.model.Record;
 import com.edu.xmu.haruki.DashboardProvider.model.ResultMsg;
@@ -13,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -62,8 +61,8 @@ public class DashboardService {
      * @return
      */
     public ResultMsg weeklyTemperature(Integer envId, LocalDate startDate, LocalDate endDate){
-        System.out.println(startDate);
-        System.out.println(endDate);
+        System.out.println(startDate.atStartOfDay(ZoneId.of("GMT+8")));
+        System.out.println(endDate.atStartOfDay());
         ResultMsg msg1=environmentFeignClient.retrieveRecords(null,null,envId,SensorType.TEMPERATURE, startDate.atStartOfDay(),endDate.atStartOfDay());
 
         ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());

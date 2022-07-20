@@ -58,8 +58,8 @@ public class DashboardController {
      */
     @GetMapping("/{envId}/humidity")
     public ResultMsg weeklyHumidity(@PathVariable Integer envId,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate){
+                                    @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                                    @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate){
         return dashboardService.humidityStatistic(envId,startDate,endDate);
     }
 

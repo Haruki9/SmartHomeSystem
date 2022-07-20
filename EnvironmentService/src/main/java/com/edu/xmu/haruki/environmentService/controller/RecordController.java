@@ -35,8 +35,8 @@ public class RecordController {
     @GetMapping("/retrieve")
     public ResultMsg retrieveRecords(@RequestParam(required = false) Long id, @RequestParam(required = false) Integer sensorId,
                                      @RequestParam(required = false) Integer envId, @RequestParam(required = false) SensorType type,
-                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime startTime,
-                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime endTime,
+                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
+                                     @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime,
                                      @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer pageSize){
         ResultMsg msg=new ResultMsg();
         RecordVo recordVo=new RecordVo();
@@ -52,8 +52,8 @@ public class RecordController {
     @GetMapping("/exception/retrieve")
     public ResultMsg retrieveExceptionRecords(@RequestParam(required = false) Long id, @RequestParam(required = false) Integer sensorId,
                                               @RequestParam(required = false) Integer envId,@RequestParam(required = false) SensorType type,
-                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime startTime,
-                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss") LocalDateTime endTime,
+                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startTime,
+                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endTime,
                                               @RequestParam(defaultValue = "0") Integer page,@RequestParam(defaultValue = "20") Integer pageSize){
         ResultMsg msg=new ResultMsg();
         RecordVo recordVo=new RecordVo();
