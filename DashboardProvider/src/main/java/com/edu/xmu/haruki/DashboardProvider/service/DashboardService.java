@@ -122,8 +122,12 @@ public class DashboardService {
     public ResultMsg exceptionStatistic(Integer envId, LocalDate startDate, LocalDate endDate) {
         ResultMsg msg1=environmentFeignClient.retrieveExceptionRecords(null,null,envId,null, startDate.atStartOfDay(),endDate.atStartOfDay());
 
-        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule());
-        List<Record> exceptionRecords=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
+        ObjectMapper objectMapper=new ObjectMapper().registerModule(new JavaTimeModule().
+                addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addSerializer(LocalDateTime.class,new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addSerializer(LocalDate.class,new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .addDeserializer(LocalDate.class,new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+        );        List<Record> exceptionRecords=objectMapper.convertValue(msg1.getData(), new TypeReference<>() {
         });
         Map<SensorType, Long> countStatistic=exceptionRecords.stream().collect(
                 Collectors.groupingBy(
