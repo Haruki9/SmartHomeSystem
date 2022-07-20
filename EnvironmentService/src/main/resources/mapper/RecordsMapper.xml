@@ -26,7 +26,7 @@
                 and record_time &lt;=#{recordVo.endTime}
             </if>
           </if>
-
+        limit 1000
     </select>
 
     <select id="getRecordsBySensorId" resultType="com.edu.xmu.haruki.environmentService.model.record.Record">
@@ -63,7 +63,7 @@
                 and record_time &lt; =#{recordVo.endTime}
             </if>
         </if>
-#         limit #{start},#{size}
+        limit 100
     </select>
 
     <insert id="insertRecord" parameterType="com.edu.xmu.haruki.environmentService.model.record.Record">
