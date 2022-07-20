@@ -18,6 +18,7 @@ public interface UserMapper {
     User getUserByUId(int uId);
 
     User getUserByUsername(String username);
+
     int updateUser(User user);
 
     int updateUserStatus(Integer uId, int userStatus);
