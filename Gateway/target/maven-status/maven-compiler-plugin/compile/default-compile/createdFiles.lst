@@ -1,6 +1,0 @@
-com/edu/xmu/haruki/gateway/controller/FallbackController.class
-com/edu/xmu/haruki/gateway/GatewayApplication.class
-com/edu/xmu/haruki/gateway/filter/AccessTokenFilter.class
-com/edu/xmu/haruki/gateway/model/ResultMsg.class
-com/edu/xmu/haruki/gateway/config/CircuitConfig.class
-com/edu/xmu/haruki/gateway/util/JwtUtil.class
