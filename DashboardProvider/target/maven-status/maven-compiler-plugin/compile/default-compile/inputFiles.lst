@@ -1,8 +1,0 @@
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/controller/DashboardController.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/feign/EnvironmentFeignClient.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/model/ResultMsg.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/model/Record.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/DashboardApplication.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/service/DashboardService.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/service/TestWeekRecord.java
-/Users/haruki_9/IdeaProjects/SmartHomeManager/DashboardProvider/src/main/java/com/edu/xmu/haruki/DashboardProvider/model/sensor/SensorType.java
