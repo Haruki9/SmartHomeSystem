@@ -6,7 +6,7 @@ spring:
   application:
     name: EnvironmentService
   datasource:
-    url: jdbc:mysql://localhost:3306/ETCDB
+    url: jdbc:mysql://101.34.7.144:3306/ETCDB
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
@@ -15,7 +15,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://123.60.14.4:8761/eureka
   instance:
     prefer-ip-address: true
 
