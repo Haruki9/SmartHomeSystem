@@ -72,6 +72,11 @@ public class RecordController {
         return recordService.insertRecord(record);
     }
 
+    @PostMapping("/exception/insert")
+    public ResultMsg insertExceptionRecord(@RequestBody Record record){
+        return recordService.insertExceptionRecord(record);
+    }
+
     @PostMapping("/mulInsert")
     public ResultMsg multipleInsertRecords(@RequestBody List<Record> records){
         return recordService.insertRecords(records);

@@ -32,4 +32,6 @@ public interface RecordsMapper {
     int deleteRecordsById(int[] idList);
 
     Record getRecordByEnvIdAndType(int envId, SensorType type);
+
+    int insertExceptionRecord(Record record);
 }

@@ -79,6 +79,10 @@
                </foreach>
 
     </insert>
+    <insert id="insertExceptionRecord"  parameterType="com.edu.xmu.haruki.environmentService.model.record.Record">
+        insert into exception_record(sensor_id,env_id,sensor_type,sense_value,record_time)
+        values(#{sensorId},#{envId},#{sensorType},#{senseValue},#{recordTime})
+    </insert>
 
     <delete id="deleteRecord" parameterType="com.edu.xmu.haruki.environmentService.model.record.RecordVo">
         delete from record

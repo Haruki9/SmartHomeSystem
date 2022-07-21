@@ -172,4 +172,23 @@ public class RecordService {
         }
         return exceptionRecords;
     }
+
+    public ResultMsg insertExceptionRecord(Record record) {
+        int res;
+        try{
+            res= recordsMapper.insertExceptionRecord(record);
+        }catch (Exception e){
+            e.printStackTrace();
+            res=0;
+        }
+        ResultMsg resultMsg=new ResultMsg();
+        if (res<=0){
+            resultMsg.setCode(500);
+            resultMsg.setMsg("传感器数据传入失败！");
+            return resultMsg;
+        }
+        resultMsg.setCode(200);
+        resultMsg.setMsg("传感器数据传入成功！");
+        return resultMsg;
+    }
 }
