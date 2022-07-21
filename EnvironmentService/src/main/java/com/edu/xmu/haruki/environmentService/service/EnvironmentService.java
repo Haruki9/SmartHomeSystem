@@ -46,6 +46,7 @@ public class EnvironmentService {
         res.put("humidity",recordService.getRecordByEnvIdAndType(envId, SensorType.HUMIDITY));
         res.put("fire",recordService.getRecordByEnvIdAndType(envId,SensorType.FIRE_FLAME));
         res.put("buzzer",recordService.getRecordByEnvIdAndType(envId,SensorType.BUZZER));
+        res.put("relay",recordService.getRecordByEnvIdAndType(envId,SensorType.RELAY_CONTROLLER));
         return res;
     }
 
