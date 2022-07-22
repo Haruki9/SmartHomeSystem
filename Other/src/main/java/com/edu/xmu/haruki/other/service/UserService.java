@@ -5,14 +5,10 @@ import com.edu.xmu.haruki.other.model.ResultMsg;
 import com.edu.xmu.haruki.other.model.User;
 import com.edu.xmu.haruki.other.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +32,9 @@ public class UserService {
             return new ResultMsg(404,"用户不存在！",null);
         }
         if (!user.getPassword().equals(password)){
+            return new ResultMsg(403,"用户或密码错误！",null);
+        }
+        if (user.getUserStatus()<=0){
             return new ResultMsg(403,"用户或密码错误！",null);
         }
         String token;
